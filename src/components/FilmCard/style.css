@@ -1,0 +1,36 @@
+.filmBlock {
+  cursor: pointer;
+  max-width: 200px;
+}
+.film_title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+
+  color: black;
+}
+a {
+  text-decoration: none;
+}
+.rc-rate-star {
+  list-style-type: none;
+}
+.filmBlock {
+  position: relative;
+}
+.react-rater {
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 10%;
+  color: white;
+}
+.is-active {
+  color: yellow;
+}
+.react-tooltip {
+  z-index: 1000;
+}

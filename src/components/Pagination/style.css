@@ -1,0 +1,12 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+.pagination li {
+  padding: 5px;
+  cursor: pointer;
+}
+.selected {
+  font-weight: bold;
+}
