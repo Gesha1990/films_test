@@ -1,20 +1,18 @@
 import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { FadeLoader } from 'react-spinners';
 import {
   CustomPagination,
   ErrorBoundary,
   FilmCard,
-  Loading,
   SearchPanel
 } from 'src/components';
 import { AppDispatch, RootState } from 'src/redux/store';
 import { fetchFavoriteFilms } from 'src/redux/filmsSlice';
 import './style.css';
 
-export const FilmsPage = () => {
-  const { favoriteFilms, pagesCount, loading } = useSelector(
+const FilmsPage = () => {
+  const { favoriteFilms, pagesCount, error } = useSelector(
     (state: RootState) => state.films
   );
   const [searchParams] = useSearchParams();
@@ -32,13 +30,13 @@ export const FilmsPage = () => {
     });
   }, [pageNumber, favoriteFilms]);
   return (
-    <>
-      <ErrorBoundary>
-        <Loading loading={loading} />
+    <ErrorBoundary error={error}>
+      <div>
         <SearchPanel />
         <div className="filmsWrapper">{renderedFilms}</div>
         <CustomPagination page={pageNumber} pagesCount={pagesCount} />
-      </ErrorBoundary>
-    </>
+      </div>
+    </ErrorBoundary>
   );
 };
+export default FilmsPage;

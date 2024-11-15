@@ -1,15 +1,13 @@
 import React from 'react';
-import Spinner from 'src/assets/spinner.svg';
+import { SpinnerCircular } from 'spinners-react';
 import './style.css';
 
-function Loading({ loading }: { loading: boolean }) {
+function Loading() {
   return (
     <>
-      {loading && (
-        <div className="loadingWrapper">
-          <img src={Spinner} />
-        </div>
-      )}
+      <div className="loadingWrapper">
+        <SpinnerCircular color="yellow" />
+      </div>
     </>
   );
 }

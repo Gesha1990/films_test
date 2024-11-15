@@ -20,3 +20,10 @@
     )
     rgb(var(--background-start-rgb));
 }
+.rc-tooltip-inner {
+  background-color: black;
+  color: white;
+}
+.rc-tooltip-arrow {
+  border-top-color: black !important;
+}

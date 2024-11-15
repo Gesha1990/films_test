@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_FILM_URL } from './constants';
+import { BASE_FILM_URL } from 'src/constants/constants';
 
 const instance = axios.create({
   baseURL: `${BASE_FILM_URL}/`,

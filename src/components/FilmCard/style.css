@@ -1,6 +1,12 @@
 .filmBlock {
   cursor: pointer;
   max-width: 200px;
+  border-radius: 10px;
+}
+.filmBlock:hover {
+  -webkit-box-shadow: -2px -1px 15px 7px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: -3px -2px 30px 14px rgba(0, 0, 0, 0.425);
+  box-shadow: -4px -3px 45px 21px rgba(0, 0, 0, 0.35);
 }
 .film_title {
   text-overflow: ellipsis;
@@ -19,7 +25,7 @@ a {
 .filmBlock {
   position: relative;
 }
-.react-rater {
+.filmBlock .react-rater {
   width: 100%;
   z-index: 100;
   display: flex;
