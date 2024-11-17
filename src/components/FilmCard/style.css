@@ -25,6 +25,9 @@ a {
 .filmBlock {
   position: relative;
 }
+.filmBlock img {
+  height: 300px;
+}
 .filmBlock .react-rater {
   width: 100%;
   z-index: 100;
