@@ -12,7 +12,7 @@ export const fetchPopularFilms = createAsyncThunk(
   async (page: string, thunkAPI) => {
     try {
       const response: FilmsResponse = await instance.get(
-        `/movie/popular?page=${page}`
+        `/movie/top_rated?page=${page}`
       );
       return response.data;
       /* eslint-disable */

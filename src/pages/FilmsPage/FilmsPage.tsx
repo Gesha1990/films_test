@@ -16,6 +16,7 @@ const FilmsPage = () => {
   const { favoriteFilms, pagesCount, error } = useSelector(
     (state: RootState) => state.films
   );
+  console.log(pagesCount, 1111);
   const [searchParams] = useSearchParams();
   const pageNumber = searchParams.get('page') || '1';
   const name = searchParams.get('name') || '';
