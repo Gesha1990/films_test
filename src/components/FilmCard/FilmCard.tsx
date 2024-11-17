@@ -15,8 +15,8 @@ const FilmCard = ({ film }: { film: Film }) => {
   const nameString = name ? `&name=${name}` : '';
   const pageString = pageNumber ? `?page=${pageNumber}` : `?page=1`;
   return (
-    <div className="filmBlock">
-      <Link to={`filmDetails/${id}${pageString}${nameString}`}>
+    <Link to={`filmDetails/${id}${pageString}${nameString}`}>
+      <div className="filmBlock">
         <div data-tooltip-id={original_title} className="film_title">
           {original_title}
         </div>
@@ -25,8 +25,8 @@ const FilmCard = ({ film }: { film: Film }) => {
         )}
         <img src={`${BASE_IMAGE_URL}/${poster_path}`} />
         <Rates vote_average={vote_average} />
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
