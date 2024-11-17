@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import {
   CustomPagination,
@@ -7,8 +7,9 @@ import {
   FilmCard,
   SearchPanel
 } from 'src/components';
-import { AppDispatch, RootState } from 'src/redux/store';
-import { fetchFavoriteFilms } from 'src/redux/filmsSlice';
+import { Film } from 'src/redux/interfaces';
+import { dispatch, RootState } from 'src/redux/store';
+import { fetchPopularFilms, fetchSearchFilms } from 'src/redux/filmsSlice';
 import './style.css';
 
 const FilmsPage = () => {
@@ -17,24 +18,41 @@ const FilmsPage = () => {
   );
   const [searchParams] = useSearchParams();
   const pageNumber = searchParams.get('page') || '1';
+  const name = searchParams.get('name') || '';
+  useEffect(() => {
+    const isEmptySearchName = !name.length;
 
-  const dispatch = useDispatch<AppDispatch>();
+    if (isEmptySearchName) {
+      dispatch(fetchPopularFilms(pageNumber));
+    }
+  }, [pageNumber, name]);
 
   useEffect(() => {
-    dispatch(fetchFavoriteFilms(pageNumber));
-  }, [pageNumber]);
+    if (name) {
+      dispatch(fetchSearchFilms({ name, pageNumber }));
+    }
+  }, [name, pageNumber]);
 
   const renderedFilms = useMemo((): React.ReactElement[] => {
-    return favoriteFilms.map((film: any, key) => {
+    return favoriteFilms.map((film: Film, key) => {
       return <FilmCard film={film} key={key} />;
     });
   }, [pageNumber, favoriteFilms]);
+  const isFilms = renderedFilms.length > 0;
   return (
     <ErrorBoundary error={error}>
       <div>
         <SearchPanel />
-        <div className="filmsWrapper">{renderedFilms}</div>
-        <CustomPagination page={pageNumber} pagesCount={pagesCount} />
+        <div className="filmsWrapper">
+          {isFilms ? (
+            renderedFilms
+          ) : (
+            <div className="emptyResult">No results</div>
+          )}
+        </div>
+        {isFilms && (
+          <CustomPagination page={pageNumber} pagesCount={pagesCount} />
+        )}
       </div>
     </ErrorBoundary>
   );

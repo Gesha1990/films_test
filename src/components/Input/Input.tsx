@@ -1,10 +1,12 @@
 import React from 'react';
 import './style.css';
+import { IProps } from './interfaces';
 
-export const CustomInput = () => {
+const CustomInput = (props: IProps) => {
   return (
     <label htmlFor="inp" className="inp">
-      <input type="text" id="inp" placeholder="Search film" />
+      <input type="text" id="inp" {...props} placeholder="Search film" />
     </label>
   );
 };
+export default CustomInput;

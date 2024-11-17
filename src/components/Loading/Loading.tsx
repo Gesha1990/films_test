@@ -4,11 +4,9 @@ import './style.css';
 
 function Loading() {
   return (
-    <>
-      <div className="loadingWrapper">
-        <SpinnerCircular color="yellow" />
-      </div>
-    </>
+    <div className="loadingWrapper">
+      <SpinnerCircular color="yellow" />
+    </div>
   );
 }
 export default Loading;

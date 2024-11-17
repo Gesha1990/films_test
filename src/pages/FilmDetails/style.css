@@ -28,6 +28,10 @@
   height: 40px;
   width: 35px;
   font-weight: bold;
+  color: gray;
+}
+.rateWrapper .is-active {
+  color: black;
 }
 .filmDetailsWrapper {
   margin: 0 auto;

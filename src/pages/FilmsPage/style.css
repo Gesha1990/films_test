@@ -5,3 +5,6 @@
   grid-auto-flow: dense;
   justify-content: center;
 }
+.emptyResult {
+  grid-column-start: 3;
+}

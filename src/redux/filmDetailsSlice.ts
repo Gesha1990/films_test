@@ -15,6 +15,7 @@ export const fetchFilmDetails = createAsyncThunk(
       );
 
       return response.data;
+      /* eslint-disable */
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
     }

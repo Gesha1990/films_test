@@ -4,6 +4,7 @@ import FilmCard from './FilmCard/FilmCard';
 import Loading from './Loading/Loading';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Rates from './Rates/Rates';
+import CustomInput from './Input/Input';
 
 export {
   CustomPagination,
@@ -11,5 +12,6 @@ export {
   FilmCard,
   Loading,
   ErrorBoundary,
-  Rates
+  Rates,
+  CustomInput
 };

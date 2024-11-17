@@ -1,4 +1,3 @@
-import { SerializedError } from '@reduxjs/toolkit';
 import { ReactNode } from 'react';
 
 export interface IProps {

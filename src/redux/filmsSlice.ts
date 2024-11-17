@@ -7,14 +7,29 @@ const initialState: FilmsState = {
   pagesCount: 0,
   error: ''
 };
-export const fetchFavoriteFilms = createAsyncThunk(
+export const fetchPopularFilms = createAsyncThunk(
   'films',
   async (page: string, thunkAPI) => {
     try {
       const response: FilmsResponse = await instance.get(
-        `trending/movie/day?language=en-US&page=${page}`
+        `/movie/popular?page=${page}`
       );
       return response.data;
+      /* eslint-disable */
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const fetchSearchFilms = createAsyncThunk(
+  'searchFilms',
+  async (data: { name: string; pageNumber: string }, thunkAPI) => {
+    try {
+      const response: FilmsResponse = await instance.get(
+        `search/movie?query=${data.name}&page=${data.pageNumber}`
+      );
+      return response.data;
+      /* eslint-disable */
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -25,10 +40,17 @@ export const filmsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchFavoriteFilms.rejected, (state, action) => {
+    builder.addCase(fetchPopularFilms.rejected, (state, action) => {
       state.error = action.payload as string;
     });
-    builder.addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
+    builder.addCase(fetchPopularFilms.fulfilled, (state, action) => {
+      state.favoriteFilms = action.payload.results;
+      state.pagesCount = action.payload.total_pages;
+    });
+    builder.addCase(fetchSearchFilms.rejected, (state, action) => {
+      state.error = action.payload as string;
+    });
+    builder.addCase(fetchSearchFilms.fulfilled, (state, action) => {
       state.favoriteFilms = action.payload.results;
       state.pagesCount = action.payload.total_pages;
     });

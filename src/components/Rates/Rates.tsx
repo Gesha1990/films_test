@@ -3,13 +3,7 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Rater from 'react-rater';
 import 'react-tooltip/dist/react-tooltip.css';
 
-const Rates = ({
-  vote_average,
-  place
-}: {
-  vote_average: number;
-  place: string;
-}) => {
+const Rates = ({ vote_average }: { vote_average: number }) => {
   //   Fix library warnings
   const error = console.error;
   console.error = (...args: any) => {
@@ -22,12 +16,11 @@ const Rates = ({
         total={10}
         rating={Math.round(vote_average)}
         interactive={false}
-        data-tooltip-id={`${vote_average}${place}`}
+        data-tooltip-id={`${vote_average}`}
       />
-      <ReactTooltip
-        id={`${vote_average}${place}`}
-        content={`Rating: ${vote_average}`}
-      />
+      <ReactTooltip id={`${vote_average}`}>
+        <div>{`Rating: ${vote_average}`}</div>
+      </ReactTooltip>
     </div>
   );
 };
