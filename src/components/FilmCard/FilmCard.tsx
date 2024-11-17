@@ -1,17 +1,19 @@
 import React from 'react';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Film } from 'src/redux/interfaces';
 import { BASE_IMAGE_URL } from 'src/constants/constants';
 import Rates from '../Rates/Rates';
 import './style.css';
 
 const FilmCard = ({ film }: { film: Film }) => {
+  const [searchParams] = useSearchParams();
+  const name = searchParams.get('name') || '';
   const { original_title, id, vote_average, poster_path } = film;
   const isToolTip = original_title.length > 20;
   return (
     <div className="filmBlock">
-      <Link to={`filmDetails/${id}`}>
+      <Link to={`filmDetails/${id}${name ? `?name=${name}` : ''}`}>
         <div data-tooltip-id={original_title} className="film_title">
           {original_title}
         </div>

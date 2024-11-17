@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import BackArrow from 'src/assets/arrowLeft.svg';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { BASE_IMAGE_URL } from 'src/constants/constants';
 import { fetchFilmDetails } from 'src/redux/filmDetailsSlice';
 import { dispatch, RootState } from 'src/redux/store';
@@ -11,9 +11,11 @@ import { ErrorBoundary, Rates } from 'src/components';
 
 const FilmDetails = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const { filmDetails, error } = useSelector(
     (state: RootState) => state.filmDetails
   );
+  const name = searchParams.get('name') || '';
   const { title, poster_path, vote_average, release_date, genres } =
     filmDetails;
   useEffect(() => {
@@ -22,7 +24,7 @@ const FilmDetails = () => {
   return (
     <ErrorBoundary error={error}>
       <div className="filmDetailsWrapper">
-        <Link to={`/?page=1`}>
+        <Link to={`/?page=1${name ? `&name=${name}` : ''}`}>
           <img src={BackArrow} className="backArrow" />
         </Link>
         <h2 className="title">{title}</h2>

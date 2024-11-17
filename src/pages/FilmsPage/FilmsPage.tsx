@@ -20,9 +20,7 @@ const FilmsPage = () => {
   const pageNumber = searchParams.get('page') || '1';
   const name = searchParams.get('name') || '';
   useEffect(() => {
-    const isEmptySearchName = !name.length;
-
-    if (isEmptySearchName) {
+    if (!name) {
       dispatch(fetchPopularFilms(pageNumber));
     }
   }, [pageNumber, name]);
