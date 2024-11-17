@@ -7,7 +7,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 const SearchPanel = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const pageNumber = searchParams.get('page') || '1';
   const name = searchParams.get('name') || '';
 
   const onChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +14,7 @@ const SearchPanel = () => {
     if (isEmptySearchName) {
       navigate(`/?page=1`);
     } else {
-      navigate(`/?page=${pageNumber}&name=${e.target.value}`);
+      navigate(`/?page=1&name=${e.target.value}`);
     }
   }, 1000);
   return (

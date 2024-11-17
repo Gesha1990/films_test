@@ -9,11 +9,14 @@ import './style.css';
 const FilmCard = ({ film }: { film: Film }) => {
   const [searchParams] = useSearchParams();
   const name = searchParams.get('name') || '';
+  const pageNumber = searchParams.get('page') || '1';
   const { original_title, id, vote_average, poster_path } = film;
   const isToolTip = original_title.length > 20;
+  const nameString = name ? `&name=${name}` : '';
+  const pageString = pageNumber ? `?page=${pageNumber}` : `?page=1`;
   return (
     <div className="filmBlock">
-      <Link to={`filmDetails/${id}${name ? `?name=${name}` : ''}`}>
+      <Link to={`filmDetails/${id}${pageString}${nameString}`}>
         <div data-tooltip-id={original_title} className="film_title">
           {original_title}
         </div>

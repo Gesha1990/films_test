@@ -16,15 +16,18 @@ const FilmDetails = () => {
     (state: RootState) => state.filmDetails
   );
   const name = searchParams.get('name') || '';
+  const page = searchParams.get('page');
   const { title, poster_path, vote_average, release_date, genres } =
     filmDetails;
   useEffect(() => {
     dispatch(fetchFilmDetails(id as string));
   }, [id]);
+  const pageString = page ? `?page=${page}` : '?page=1';
+  const nameString = name ? `&name=${name}` : '';
   return (
     <ErrorBoundary error={error}>
       <div className="filmDetailsWrapper">
-        <Link to={`/?page=1${name ? `&name=${name}` : ''}`}>
+        <Link to={`/${pageString}${nameString}`}>
           <img src={BackArrow} className="backArrow" />
         </Link>
         <h2 className="title">{title}</h2>
