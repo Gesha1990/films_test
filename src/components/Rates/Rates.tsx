@@ -6,6 +6,7 @@ import 'react-tooltip/dist/react-tooltip.css';
 const Rates = ({ vote_average }: { vote_average: number }) => {
   //   Fix library warnings
   const error = console.error;
+  /* eslint-disable */
   console.error = (...args: any) => {
     if (/defaultProps/.test(args[0])) return;
     error(...args);

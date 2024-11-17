@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const debounce = <F extends (...args: any[]) => any>(
   func: F,
   waitFor: number
