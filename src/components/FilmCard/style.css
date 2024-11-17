@@ -27,6 +27,7 @@ a {
 }
 .filmBlock img {
   height: 300px;
+  max-width: 200px;
 }
 .filmBlock .react-rater {
   width: 100%;
